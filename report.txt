@@ -1,0 +1,8 @@
+Preprocess (Shashwat)
+used scipy.sparse to create sprase CSR matrix of the data set:
+dropped the ratings column because it was irrelevent 
+created a matric of size movies*user
+Users : 103703
+Movies: 17770
+Records: 65225506
+prevented duplicates to keep matric valuses bw 0 and 1

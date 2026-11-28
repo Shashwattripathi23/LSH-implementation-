@@ -7,12 +7,7 @@ THRESHOLD = 0.5
 
 
 def get_user_movies(matrix, user_id):
-    """
-    Retrieve movie indices rated by a user.
-
-    Candidate user IDs are assumed to be original 1-based IDs.
-    The matrix uses 0-based column indices.
-    """
+    
     user_index = int(user_id) - 1
 
     if user_index < 0 or user_index >= matrix.shape[1]:
@@ -25,12 +20,7 @@ def get_user_movies(matrix, user_id):
 
 
 def jaccard_similarity(movies_a, movies_b):
-    """
-    Calculate exact Jaccard similarity.
-
-    Movie lists are sorted, so intersection is calculated
-    using NumPy.
-    """
+    
     intersection = np.intersect1d(movies_a, movies_b).size
     union = len(movies_a) + len(movies_b) - intersection
 
@@ -41,10 +31,7 @@ def jaccard_similarity(movies_a, movies_b):
 
 
 def verify_candidates(candidate_pairs, user_movies, threshold=THRESHOLD):
-    """
-    Verify candidate pairs and keep only pairs whose
-    Jaccard similarity is strictly greater than threshold.
-    """
+    
     similar_pairs = []
     checked = 0
 
@@ -75,10 +62,7 @@ def verify_candidates(candidate_pairs, user_movies, threshold=THRESHOLD):
 
 
 def save_results(similar_pairs, output_file="result.txt"):
-    """
-    Save final user pairs in the required format:
-    user1,user2
-    """
+    
     with open(output_file, "w") as f:
         for user_a, user_b, similarity in sorted(similar_pairs):
             f.write(f"{user_a},{user_b}\n")
